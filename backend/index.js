@@ -6,6 +6,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); 
@@ -20,7 +21,7 @@ const initializeDBAndServer = async () => {
       driver: sqlite3.Database,
     });
 
-    app.listen(3000, () => {
+    app.listen(port, () => {
       console.log("Server Running at http://localhost:3000/");
     });
   } catch (e) {
@@ -82,3 +83,8 @@ app.post("/login", async (request, response) => {
     }
   });
   
+  app.get("/categories",async (request,response) =>{
+    const getCategoriesQuery = `SELECT * FROM categories`;
+    const categories = await db.all(getCategoriesQuery)
+   response.send(categories);
+  })

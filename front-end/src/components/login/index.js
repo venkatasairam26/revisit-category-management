@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom'
+import React, { useState} from 'react';
+// import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
-
+import './index.css'
 
 const Login = (props) => {
     const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ const Login = (props) => {
         Cookies.set("jwt_token", token, { expires: 30 });
         const { history } = props
         console.log(history.replace, "history")
-        history.replace("/")
+        history.replace("/categories")
 
     };
     const registerNewUser = () => {
@@ -53,26 +53,27 @@ const Login = (props) => {
 
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={onSubmitForm}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                    type="text" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Login</button>
-
-            </form>
-            <button type="button" onClick={registerNewUser}>Sign Up</button>
-        </div>
+        <div className="login-container">
+  <div className="login-form">
+    <h1>Login</h1>
+    <form onSubmit={onSubmitForm}>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Login</button>
+    </form>
+    <button type="button" onClick={registerNewUser}>Sign Up</button>
+  </div>
+</div>
     );
 };
 

@@ -1,0 +1,23 @@
+.sidebar { 
+    text-align: left;
+    padding: 20px 10px;
+    background-color: #1E2654;
+    height: 100%;
+}
+
+.nav-section ul,.other-section ul,.settings-section ul{
+    list-style: none;
+}
+.sidebar ul li a{
+    text-decoration: none;
+    margin: 0 0 7px;
+    display: block;
+    color: #fff;
+}
+.sidebar h4{
+    color: #fbb413;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+    letter-spacing: 1px;
+}
