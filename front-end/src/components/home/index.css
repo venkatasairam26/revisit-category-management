@@ -11,7 +11,6 @@
     align-items: center;
     padding: 20px;
     background: #000;
-    margin: 0 0 10px;
 }
 .category-list{
     width: 100%;
@@ -19,9 +18,10 @@
     justify-content: space-between;
     list-style: none;
     flex-wrap: wrap;
+    gap: 20px;
 }
 .category-item {
-    width: 31%;
+    width: 32%;
     text-align: left;
 }
 .category-item img{
@@ -29,8 +29,8 @@
   display: block;
 }
 .category-add-category{
-    width: 80%;
-    padding:0 0 30px;
+    width: 83%;
+    padding:0 15px 30px;
     text-align: right;
     
 }
@@ -40,12 +40,11 @@
 
 }
 .add-category{
-    margin: 0 0 20px;
+    margin: 10px 0 20px;
 }
 .home-container {
     display: flex;
     justify-content: space-between;
-    padding: 0 15px 0;
 }
 .sidebar-cont{
     width: 15%;
@@ -66,6 +65,8 @@
 }
 .category-list img{
     margin: 0 0 15px;
+    display: block;
+    width: 100%;
 }
 .category-list .category-name {
     font-size: 18px;
