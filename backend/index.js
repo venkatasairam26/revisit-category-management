@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json()); 
 
 const dbPath = path.join(__dirname, "categoryAndUserDetails.db");
-let db = null; // ✅ use consistent name "db"
+let db = null; 
 
 const initializeDBAndServer = async () => {
   try {
@@ -36,10 +36,10 @@ initializeDBAndServer();
 app.post("/signup", async (request, response) => {
   const { username, password, email } = request.body;
  console.log(username,password,email)
-  const hasedPassword = await bcrypt.hash(password, 10); // ✅ Hash the password
+  const hasedPassword = await bcrypt.hash(password, 10); 
   const selectUserQuery = `SELECT * FROM userDetails WHERE user_name = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
-  console.log(dbUser,"userDb")
+  // console.log(dbUser,"userDb")
 
   if (dbUser === undefined) {
     const createUserQuery = `INSERT INTO userDetails (user_name, password,email) 

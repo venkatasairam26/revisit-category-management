@@ -1,17 +1,15 @@
 import { useState,useEffect } from "react"
-import { useNavigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 
 
-const Signup = () =>{
+const Signup = (props) =>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const navigate = useNavigate()
-    console.log(username)
-    console.log(password)
-    console.log(email)
+    
+    
    const  onSubmitUserDetails = async (event)=>{
     event.preventDefault()
     const url = "http://localhost:3000/signup/"
@@ -36,7 +34,7 @@ const Signup = () =>{
 
         if (response.ok) {
             // alert(data);
-            return navigate("/login")
+          props.history.replace("/login")
         } else {
             alert(data);
         }

@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
 
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [checkBtn, setCheckBtn] = useState(false);
-    const navigate = useNavigate();
-    // const setToken = (token) => {
-    //     console.log(token, "token")
-    //  Cookies.set("jwt_token", token, {expires:30});
-    //     // localStorage.setItem("jwt_token",token);
-    //     navigate("/");
-    // }
 
     const setToken = (token) => {
         console.log(token, "token");
         Cookies.set("jwt_token", token, { expires: 30 });
-    
-        setTimeout(() => {
-            navigate("/");
-        }, 1000); // slight delay to ensure cookie is set
+        const { history } = props
+        console.log(history.replace, "history")
+        history.replace("/")
+
     };
-    
+    const registerNewUser = () => {
+        props.history.replace("/signup")
+    }
+
 
     //   console.log(username,password)
     // console.log(checkBtn, "checkBtn")
@@ -46,7 +41,7 @@ const Login = () => {
             });
 
 
-            const data = await response.json(); // Or .json() if backend returns JSON
+            const data = await response.json();
             console.log(data);
             setToken(data.jwtToken)
 
@@ -55,32 +50,6 @@ const Login = () => {
             alert("Network Error: Unable to reach server");
         }
     };
-
-    // useEffect(() => {
-
-    //     console.log("useffect Called")
-    //     const url = "http://localhost:3000/login/"
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch(url, {
-    //                 method: "GET",
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //             });
-
-    //             const data = await response.json();
-    //             console.log(data);
-    //         } catch (error) {
-    //             console.error("Error:", error);
-    //         }
-    //     };
-    //     fetchData();
-
-       
-
- 
-    // }, [checkBtn]);
 
 
     return (
@@ -94,7 +63,7 @@ const Login = () => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <input
-                    type="text" // ✅ corrected from "text"
+                    type="text" 
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -102,9 +71,7 @@ const Login = () => {
                 <button type="submit">Login</button>
 
             </form>
-            <button type="button" onClick={() => {navigate("/signup")}}
-                
-            >Sign Up</button>
+            <button type="button" onClick={registerNewUser}>Sign Up</button>
         </div>
     );
 };
