@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // ✅ Parse JSON body
+app.use(express.json()); 
 
 const dbPath = path.join(__dirname, "categoryAndUserDetails.db");
 let db = null; // ✅ use consistent name "db"
